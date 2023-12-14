@@ -25,8 +25,8 @@ namespace DrawingLines
         {
 
             // Calculate the ending point coordinates
-            endX = (int)(startX + length * Math.Cos(angle * Math.PI / 180));
-            endY = (int)(startY - length * Math.Sin(angle * Math.PI / 180));
+            endX = (int)(startX + length * Math.Sin(angle * Math.PI / 180));
+            endY = (int)(startY - length * Math.Cos(angle * Math.PI / 180));
 
         }
 
