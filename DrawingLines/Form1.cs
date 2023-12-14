@@ -12,10 +12,10 @@ namespace DrawingLines
 {
     public partial class Form1 : Form
     {
-        static int startX;
-        static int startY;
-        static int endX;
-        static int endY;
+        static int startX= 300;
+        static int startY=300;
+        static int endX=300;
+        static int endY = 300;
         static int red = 0;
         static int green = 0;
         static int blue = 0;
@@ -27,7 +27,7 @@ namespace DrawingLines
         public static void DrawLine(double angle, double length)
         {
 
-            // Calculate the ending point coordinates
+            // Calculate the ending point coordinates from the start point and the length
             endX = (int)(startX + length * Math.Sin(angle * Math.PI / 180));
             endY = (int)(startY - length * Math.Cos(angle * Math.PI / 180));
 
@@ -35,22 +35,21 @@ namespace DrawingLines
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            
+            Graphics g = e.Graphics;
+            Pen startPen = new Pen(Color.Black, 1);
+            Rectangle startRectangle = new Rectangle(startX, startY, 2, 2);
+            g.DrawRectangle(startPen,startRectangle);
             foreach (LineSegment line in lines)
             {   Pen thisPen = new Pen(Color.FromArgb(line.red, line.green, line.blue), 5);
-                e.Graphics.DrawLine(thisPen,line.StartPoint, line.EndPoint);
+                g.DrawLine(thisPen,line.StartPoint, line.EndPoint);
             }
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            startX = 300;
-            startY = 300;
-            endX = 300;
-            endY = 305;
-            Point startPoint = new Point(startX, startY);
-            Point endPoint = new Point(endX, endY);
-            lines.Add(new LineSegment(startPoint, endPoint, red, green, blue));
+
+            
+            
         }
 
         private void btn_draw_Click(object sender, EventArgs e)
@@ -70,6 +69,21 @@ namespace DrawingLines
             red = colorDialog1.Color.R;
             green = colorDialog1.Color.G;
             blue = colorDialog1.Color.B;
+        }
+
+        private void btn_changeXY_Click(object sender, EventArgs e)
+        {
+            int x = Int32.Parse(txt_newX.Text);
+            int y = Int32.Parse(txt_newY.Text);
+            if (x < 0) { x = 0; }
+            else if (x>this.Width) { x = this.Width-100; }
+            startX  = (int)x;
+
+            if (y>this.Height) { y = this.Height-100; }
+            else if (y<0) { y = 0; }
+            startY = (int)y;
+
+
         }
     }
     class LineSegment
