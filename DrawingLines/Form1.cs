@@ -16,6 +16,9 @@ namespace DrawingLines
         static int startY;
         static int endX;
         static int endY;
+        static int red = 0;
+        static int green = 0;
+        static int blue = 0;
         List<LineSegment> lines = new List<LineSegment>();
         public Form1()
         {
@@ -32,10 +35,10 @@ namespace DrawingLines
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            Pen redPen = new Pen(Color.FromArgb(0, 255, 0), 5);
+            
             foreach (LineSegment line in lines)
-            {
-                e.Graphics.DrawLine(redPen,line.StartPoint, line.EndPoint);
+            {   Pen thisPen = new Pen(Color.FromArgb(line.red, line.green, line.blue), 5);
+                e.Graphics.DrawLine(thisPen,line.StartPoint, line.EndPoint);
             }
         }
 
@@ -47,7 +50,7 @@ namespace DrawingLines
             endY = 305;
             Point startPoint = new Point(startX, startY);
             Point endPoint = new Point(endX, endY);
-            lines.Add(new LineSegment(startPoint, endPoint));
+            lines.Add(new LineSegment(startPoint, endPoint, red, green, blue));
         }
 
         private void btn_draw_Click(object sender, EventArgs e)
@@ -55,21 +58,37 @@ namespace DrawingLines
             DrawLine(double.Parse(txt_angle.Text), double.Parse(txt_length.Text));
             Point startPoint = new Point(startX, startY);
             Point endPoint = new Point(endX, endY);
-            lines.Add(new LineSegment(startPoint, endPoint));
+            lines.Add(new LineSegment(startPoint, endPoint, red, green, blue));
             Refresh();
             startX = endX;
             startY = endY;
+        }
+
+        private void btn_colour_Click(object sender, EventArgs e)
+        {
+            colorDialog1.ShowDialog();
+            red = colorDialog1.Color.R;
+            green = colorDialog1.Color.G;
+            blue = colorDialog1.Color.B;
         }
     }
     class LineSegment
     {
         public Point StartPoint { get; set; }
         public Point EndPoint { get; set; }
+        public int red { get; set; }
+        public int green { get; set; }
+        public int blue { get; set; }
 
-        public LineSegment(Point startPoint, Point endPoint)
+
+
+        public LineSegment(Point startPoint, Point endPoint, int red, int green, int blue)
         {
             this.StartPoint = startPoint;
             this.EndPoint = endPoint;
+            this.red = red;
+            this.green = green;
+            this.blue = blue;
         }
 
 

@@ -33,6 +33,8 @@
             this.txt_length = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_draw = new System.Windows.Forms.Button();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.btn_colour = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txt_angle
@@ -79,11 +81,22 @@
             this.btn_draw.UseVisualStyleBackColor = true;
             this.btn_draw.Click += new System.EventHandler(this.btn_draw_Click);
             // 
+            // btn_colour
+            // 
+            this.btn_colour.Location = new System.Drawing.Point(334, 575);
+            this.btn_colour.Name = "btn_colour";
+            this.btn_colour.Size = new System.Drawing.Size(86, 23);
+            this.btn_colour.TabIndex = 3;
+            this.btn_colour.Text = "Change Colour";
+            this.btn_colour.UseVisualStyleBackColor = true;
+            this.btn_colour.Click += new System.EventHandler(this.btn_colour_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1181, 636);
+            this.Controls.Add(this.btn_colour);
             this.Controls.Add(this.btn_draw);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -105,6 +118,8 @@
         private System.Windows.Forms.TextBox txt_length;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_draw;
+        private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Button btn_colour;
     }
 }
 
